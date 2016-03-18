@@ -1,18 +1,19 @@
 from __future__ import with_statement #dgrrrr
 import serial
 import config
+import imp
 
 #ser = serial.Serial('/dev/tty.usbserial-A9007Q5M', 115200)
 #ser = serial.Serial('/dev/ttyUSB0', 115200)
 
 DEBUG = True
 def debug(string): 
-    if DEBUG: print string
+    if DEBUG: print(string)
 
 arduinos=[]
 FILENAME = "devices.txt"
 LIGHTS_PER_ARDUINO = 16
-NUM_LIGHTS = 16*3
+NUM_LIGHTS = 16*8
 
 def setup():
     for arduino in arduinos:
@@ -23,9 +24,9 @@ def setup():
             line = line.strip()
             try:
                 arduinos.append(serial.Serial(line, 115200))
-            except Exception, e:
-                print "ERROR OPENING ARDUINO "+line
-                print e
+            except Exception as e:
+                print("ERROR OPENING ARDUINO "+line)
+                print(e)
     NUM_LIGHTS = LIGHTS_PER_ARDUINO * len(arduinos) 
 
 setup()
@@ -34,7 +35,7 @@ setup()
 
 def reload_config():
     debug("Reloading config")
-    reload(config)
+    imp.reload(config)
 
 """
     array is an array of 3 tuples (R, G, B)
@@ -51,7 +52,7 @@ def write1(array, ser):
         ser.write(towrite)
         #print "writing: "+towrite
     except:
-        print "OOPS! error! retrying"
+        print("OOPS! error! retrying")
         setup()
 
 def write(array):
@@ -68,7 +69,7 @@ def write(array):
 def chunks(l, n):
     """ Yield successive n-sized chunks from l.
     """
-    for i in xrange(0, len(l), n):
+    for i in range(0, len(l), n):
         yield l[i:i+n]
 
 

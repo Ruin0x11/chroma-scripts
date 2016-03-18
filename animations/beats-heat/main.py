@@ -16,8 +16,8 @@ http://macdevcenter.com/pub/a/python/2001/01/31/numerically.html?page=2
 '''
 
 chunk      = 2**11 # Change if too fast/slow, never less than 2**11
-scale      = 15    # Change if too dim/bright
-exponent   = 9     # Change if too little/too much difference between loud and quiet sounds
+scale      = 20    # Change if too dim/bright
+exponent   = 11     # Change if too little/too much difference between loud and quiet sounds
 samplerate = 44100 
 cutoff = 0
 
@@ -57,8 +57,8 @@ def music_visuals():
                     input_device_index = device)
 
     hue = 0.0
-    colors = [(0,0,0), (0, 0, 255), (255, 0, 0)]
-    # colors = [(0,0,0), (0, 0, 255), (0, 255, 255), (0, 255, 0),  (255, 255, 0), (255, 0, 0) ]
+    # colors = [(0,0,0), (0, 0, 255), (255, 0, 0)]
+    colors = [(0,0,0), (0, 0, 255), (0, 255, 255), (0, 255, 0),  (255, 255, 0), (255, 0, 0) ]
     
     # colors = [(0, 0, 0), (2, 0, 90), (20, 0, 123), (55, 0, 143), (84, 0, 152), (115, 0, 157), (146, 0, 156), (171, 0, 153), (188, 5, 147), (201, 17, 135), (212, 33, 111), (223, 53, 66), (231, 72, 20), (237, 90, 7), (241, 106, 2), (245, 125, 0), (249, 142, 0), (253, 163, 0), (254, 184, 0), (254, 202, 1), (255, 219, 15), (255, 232, 63), (255, 242, 134), (255, 249, 203)] 
     try:

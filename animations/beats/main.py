@@ -16,8 +16,8 @@ http://macdevcenter.com/pub/a/python/2001/01/31/numerically.html?page=2
 '''
 
 chunk      = 2**11 # Change if too fast/slow, never less than 2**11
-scale      = 21    # Change if too dim/bright
-exponent   = 9     # Change if too little/too much difference between loud and quiet sounds
+scale      = 25    # Change if too dim/bright
+exponent   = 11     # Change if too little/too much difference between loud and quiet sounds
 samplerate = 44100 
 cutoff = 0
 
@@ -43,7 +43,7 @@ def music_visuals():
     # Enable stereo mixing in your sound card
     # to make you sound output an input
     # Use list_devices() to list all your input devices
-    device   = 4  
+    device   = 5  
     
     p = pyaudio.PyAudio()
     stream = p.open(format = pyaudio.paInt16,
@@ -74,6 +74,8 @@ def music_visuals():
                 levels[i] = int(levels[i] * 255)
                 if levels[i] < cutoff:
                     levels[i] = 0
+
+            print levels
 
             cols = (1.0, 1.0, 1.0)
             c = 1.0
@@ -135,5 +137,5 @@ def calculate_levels(data, chunk, samplerate):
     return levels
 
 if __name__ == '__main__':
-    #list_devices()
+    list_devices()
     music_visuals()
